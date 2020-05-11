@@ -4,7 +4,6 @@ const CanvasRenderingContext2D = require('./lib/context2d')
 const parseFont = require('./lib/parse-font')
 const packageJson = require('./package.json')
 const bindings = require('./lib/bindings')
-const fs = require('fs')
 const PNGStream = require('./lib/pngstream')
 const PDFStream = require('./lib/pdfstream')
 const JPEGStream = require('./lib/jpegstream')
@@ -34,20 +33,6 @@ function loadImage (src) {
     image.src = src
   })
 }
-
-/**
- * Resolve paths for registerFont. Must be called *before* creating a Canvas
- * instance.
- * @param src {string} Path to font file.
- * @param fontFace {{family: string, weight?: string, style?: string}} Object
- * specifying font information. `weight` and `style` default to `"normal"`.
- */
-function registerFont (src, fontFace) {
-  // TODO this doesn't need to be on Canvas; it should just be a static method
-  // of `bindings`.
-  return Canvas._registerFont(fs.realpathSync(src), fontFace)
-}
-
 module.exports = {
   Canvas,
   Context2d: CanvasRenderingContext2D, // Legacy/compat export
@@ -62,7 +47,6 @@ module.exports = {
   DOMMatrix,
   DOMPoint,
 
-  registerFont,
   parseFont,
 
   createCanvas,

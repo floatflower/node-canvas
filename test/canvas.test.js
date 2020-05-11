@@ -10,7 +10,6 @@ const createCanvas = require('../').createCanvas
 const createImageData = require('../').createImageData
 const loadImage = require('../').loadImage
 const parseFont = require('../').parseFont
-const registerFont = require('../').registerFont
 
 const assert = require('assert')
 const os = require('os')
